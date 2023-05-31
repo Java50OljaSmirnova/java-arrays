@@ -65,14 +65,49 @@ void insertNumberTest() {
 }
 @Test
 void removeNumberTest() {
-	//TODO
+	int [] src = {1, 2, 3, 4, 5, 6, 7};
+	int index = 3;
+	int [] expected1 = {1, 2, 3, 5, 6, 7};
+	assertArrayEquals(expected1, ArraysInt.removeNumber(src, index));
+	index = 0;
+	int [] expected2 = {2, 3, 4, 5, 6, 7};
+	assertArrayEquals(expected2, ArraysInt.removeNumber(src, index));
+	index = src.length - 1;
+	int [] expected3 = {1, 2, 3, 4, 5, 6};
+	assertArrayEquals(expected3, ArraysInt.removeNumber(src, index));
+	
 }
 @Test
 void binarySearchTest() {
-	//TODO
+	int [] src = {10, 20, 30, 40, 50, 60, 70};
+	int key = 40;
+	assertEquals(3, Arrays.binarySearch(src, key));
+	key = 90;
+	assertEquals(-8, Arrays.binarySearch(src, key));
+	key = 0;
+	assertEquals(-1, Arrays.binarySearch(src, key));
+	key = 45;
+	assertEquals(-5, Arrays.binarySearch(src, key));
+	key = 25;
+	assertTrue(Arrays.binarySearch(src, key) < 0);
+	key = 10;
+	assertFalse(Arrays.binarySearch(src, key) < 0);
 }
 @Test
 void insertSortedTest() {
-	//TODO
+	int [] src = {10, 20, 30, 40, 1, 2, 3};
+	Arrays.sort(src);
+	int number = 5;
+	int [] expected1 = {1, 2, 3, 5, 10, 20, 30, 40};
+	assertArrayEquals(expected1, ArraysInt.insertNumberSorted(src, number));
+	number = 30;
+	int [] expected2 = {1, 2, 3, 10, 20, 30, 30, 40};
+	assertArrayEquals(expected2, ArraysInt.insertNumberSorted(src, number));
+	number = -3;
+	int [] expected3 = {-3, 1, 2, 3, 10, 20, 30, 40};
+	assertArrayEquals(expected3, ArraysInt.insertNumberSorted(src, number));
+	number = 100;
+	int [] expected4 = {1, 2, 3, 10, 20, 30, 40, 100};
+	assertArrayEquals(expected4, ArraysInt.insertNumberSorted(src, number));
 }
 }

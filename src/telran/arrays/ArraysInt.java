@@ -16,11 +16,25 @@ public static int[] insertNumber(int[] array, int index, int number) {
 	return res;
 }
 public static int[] removeNumber(int[] array, int index) {
-	//TODO
-	return null;
+	int [] res = new int[array.length - 1];
+	System.arraycopy(array, 0, res, 0, index);
+	System.arraycopy(array, index + 1, res, index, array.length - index - 1);
+	return res;
 }
 public static int[] insertNumberSorted(int[] arraySorted, int number) {
-	//TODO
-	return null;
+	int [] res = new int[arraySorted.length + 1];
+	int index = Arrays.binarySearch(arraySorted, number);
+	if (index < 0) {
+	if (index == -1) {
+		index = 0;
+	} else if (index < -(arraySorted.length)) {
+		index = arraySorted.length;
+	} else {
+		index = -(index + 1);
+	}}
+	System.arraycopy(arraySorted, 0, res, 0, index);
+	res[index] = number;
+	System.arraycopy(arraySorted, index, res, index + 1, arraySorted.length - index);
+	return res;
 }
 }
