@@ -22,19 +22,10 @@ public static int[] removeNumber(int[] array, int index) {
 	return res;
 }
 public static int[] insertNumberSorted(int[] arraySorted, int number) {
-	int [] res = new int[arraySorted.length + 1];
 	int index = Arrays.binarySearch(arraySorted, number);
 	if (index < 0) {
-	if (index == -1) {
-		index = 0;
-	} else if (index < -(arraySorted.length)) {
-		index = arraySorted.length;
-	} else {
-		index = -(index + 1);
-	}}
-	System.arraycopy(arraySorted, 0, res, 0, index);
-	res[index] = number;
-	System.arraycopy(arraySorted, index, res, index + 1, arraySorted.length - index);
-	return res;
+		index = -index - 1;
+	}
+	return insertNumber(arraySorted, index, number);
 }
 }
