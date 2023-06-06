@@ -1,7 +1,7 @@
 package telran.arrays;
 
 import java.util.Arrays;
-import java.util.Random;
+//import java.util.Random;
 
 public class ArraysInt {
 public static int[] addNumber(int [] array, int number) {
@@ -41,8 +41,8 @@ public static int binarySearch (int [] array, int number) {
 	int left = 0;
 	int right = array.length - 1;
 	int middle = right/ 2;
-	while(left <= right && array[middle] != number) {
-		if(number < array[middle]) {
+	while(left <= right && array[left] != number) {
+		if(number <= array[middle]) {
 			right = middle -1;
 		} else {
 			left = middle + 1;
@@ -50,7 +50,7 @@ public static int binarySearch (int [] array, int number) {
 		middle = (left + right) / 2;
 	}
 	
-	return left <= right ? middle : middle-1;	
+	return left < array.length && array[left] == number ? left : -left-1;	
 }
 public static void quickSort(int[] array) {
 	Arrays.sort(array); //O[N*LogN]
@@ -78,8 +78,8 @@ private static void swap(int[] array, int i, int j) {
 	array[i] = array[j];
 	array[j] = tmp;
 }
-private static int getRandomInt (int min, int max) {
-	Random gen = new Random();
-	return gen.nextInt(min, max + 1);
-}
+//private static int getRandomInt (int min, int max) {
+//	Random gen = new Random();
+//	return gen.nextInt(min, max + 1);
+//}
 }
