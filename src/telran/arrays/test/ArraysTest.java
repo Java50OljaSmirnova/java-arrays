@@ -1,6 +1,7 @@
 package telran.arrays.test;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import telran.arrays.ArraysInt;
 
@@ -9,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 
 public class ArraysTest {
+private static final int N_ELEMENTS = 1000000;
+private static final int N_RUNS = 1000000;
 @Test
 void initialTest() {
 	int [] ar1 = {1, 2, 3};
@@ -80,34 +83,54 @@ void removeNumberTest() {
 @Test
 void binarySearchTest() {
 	int [] src = {10, 20, 30, 40, 50, 60, 70};
-	int key = 40;
-	assertEquals(3, Arrays.binarySearch(src, key));
-	key = 90;
-	assertEquals(-8, Arrays.binarySearch(src, key));
-	key = 0;
-	assertEquals(-1, Arrays.binarySearch(src, key));
-	key = 45;
-	assertEquals(-5, Arrays.binarySearch(src, key));
-	key = 25;
-	assertTrue(Arrays.binarySearch(src, key) < 0);
-	key = 10;
-	assertFalse(Arrays.binarySearch(src, key) < 0);
+	assertEquals(-3, ArraysInt.binarySearch(src, 25));
+//	assertEquals(-8, Arrays.binarySearch(src, 90));
+//	assertEquals(-1, Arrays.binarySearch(src, 0));
+//	assertEquals(-5, Arrays.binarySearch(src, 45));
+//	assertTrue(Arrays.binarySearch(src, 25) < 0);
+//	assertFalse(Arrays.binarySearch(src, 10) < 0);
+}
+@Test
+@Timeout(3)
+void muchRepeatedTest () {
+int array[] = new int[N_ELEMENTS];
+for(int i = 0; i < N_RUNS; i++) {
+assertEquals(0, ArraysInt.binarySearch(array, 0));
+}
 }
 @Test
 void insertSortedTest() {
-	int [] src = {10, 20, 30, 40, 1, 2, 3};
-	Arrays.sort(src);
-	int number = 5;
+	int [] src = {1, 2, 3, 10, 20, 30, 40};;
 	int [] expected1 = {1, 2, 3, 5, 10, 20, 30, 40};
-	assertArrayEquals(expected1, ArraysInt.insertNumberSorted(src, number));
-	number = 30;
 	int [] expected2 = {1, 2, 3, 10, 20, 30, 30, 40};
-	assertArrayEquals(expected2, ArraysInt.insertNumberSorted(src, number));
-	number = -3;
 	int [] expected3 = {-3, 1, 2, 3, 10, 20, 30, 40};
-	assertArrayEquals(expected3, ArraysInt.insertNumberSorted(src, number));
-	number = 100;
 	int [] expected4 = {1, 2, 3, 10, 20, 30, 40, 100};
-	assertArrayEquals(expected4, ArraysInt.insertNumberSorted(src, number));
+	assertArrayEquals(expected1, ArraysInt.insertNumberSorted(src, 5));
+	assertArrayEquals(expected2, ArraysInt.insertNumberSorted(src, 30));
+	assertArrayEquals(expected3, ArraysInt.insertNumberSorted(src, -3));
+	assertArrayEquals(expected4, ArraysInt.insertNumberSorted(src, 100));
+}
+@Test
+void maxIntTest() {
+	assertEquals(Integer.MAX_VALUE, getIntMax());
+}
+private long getIntMax() {
+	int res = 1;
+	while(res > 0) {
+		res++;
+	}
+	return res - 1;
+}
+@Test
+@Timeout(3)
+void maxLongTest() {
+	assertEquals(Long.MAX_VALUE, getLongMax());
+}
+private long getLongMax() {
+	long res = 1;
+	while(res > 0) {
+		res*=2;
+	}
+	return res - 1;
 }
 }
