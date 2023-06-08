@@ -1,7 +1,6 @@
 package telran.arrays;
 
 import java.util.Arrays;
-//import java.util.Random;
 
 public class ArraysInt {
 public static int[] addNumber(int [] array, int number) {
@@ -37,7 +36,6 @@ public static int searchNumber(int[] array, int number) {
 	return index < array.length ? index : -1;
 }
 public static int binarySearch (int [] array, int number) {
-	//TODO
 	int left = 0;
 	int right = array.length - 1;
 	int middle = right/ 2;
@@ -57,17 +55,17 @@ public static void quickSort(int[] array) {
 }
 public static void bubbleSort(int[] array) {
 	int length = array.length;
-	boolean flSorted = false;
+	boolean sorted = false;
 	do {
 		length--;
-		flSorted = true;
+		sorted = true;
 		for(int i = 0; i < length; i++) {
 			if(array[i] > array[i+1]) {
 				swap(array, i, i + 1);
-				flSorted = false;
+				sorted = false;
 			}
 		}
-	}while(!flSorted);
+	}while(!sorted);
 }
 private static void swap(int[] array, int i, int j) {
 //	swap with no additional variable;
@@ -78,8 +76,4 @@ private static void swap(int[] array, int i, int j) {
 	array[i] = array[j];
 	array[j] = tmp;
 }
-//private static int getRandomInt (int min, int max) {
-//	Random gen = new Random();
-//	return gen.nextInt(min, max + 1);
-//}
 }
